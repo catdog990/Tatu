@@ -21,10 +21,12 @@ export default function App() {
 
             if (route.name === 'Home') {
               iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
+                ? 'skull'
+                : 'skull-outline';
             } else if (route.name === 'Settings') {
-              iconName = focused ? 'ios-list-box' : 'ios-list';
+              iconName = focused 
+              ? 'planet' 
+              : 'planet-outline';
             }
 
             // You can return any component that you like here!
