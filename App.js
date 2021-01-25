@@ -1,58 +1,33 @@
-import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-
-//Navigation shiz// 
+import * as React from 'react';
+import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
 
-const Stack = createStackNavigator();
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Settings!</Text>
+    </View>
+  );
+}
 
-const MyStack = () => {
+const Tab = createBottomTabNavigator();
+
+export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ title: 'Welcome' }}
-        />
-        <Stack.Screen 
-          name="Profile" 
-          component={ProfileScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
-};
-
-const HomeScreen = ({ navigation }) => {
-  return (
-    <Button
-      title="Go to Jane's profile"
-      onPress={() =>
-        navigation.navigate('Profile', { name: 'Jane' })
-      }
-    />
-  );
-};
-const ProfileScreen = ({ navigation, route }) => {
-  return <Text>This is {route.params.name}'s profile</Text>;
-};
-
-
-
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default MyStack;
+}
